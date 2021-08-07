@@ -27,7 +27,7 @@
                 <li><a href="IssueBookForm">Issue Book</a></li>
                 <li><a href="ViewIssuedBook">View Issued Book</a></li>
                 <li><a href="ReturnBookForm">Return Book</a></li>
-                <li><a href="LogoutLibrarian">Logout</a></li>
+                <li><a href="account?action=logout">Logout</a></li>
             </ul>
 
         </div><!-- /.navbar-collapse -->
