@@ -74,7 +74,20 @@ public class IssueBookServlet extends HttpServlet {
                 }
                 request.getRequestDispatcher("navlibrarian.jsp").include(request, response);
                 break;
+            case "findIBook":
+                findIBook(request,response);
+                break;
+        }
 
+    }
+    protected void findIBook(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String findName = request.getParameter("findName");
+        try {
+            request.setAttribute("listIssueBook", issueBookService.findByNameIb(findName));
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("viewIssuedBook.jsp");
+            requestDispatcher.forward(request, response);
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

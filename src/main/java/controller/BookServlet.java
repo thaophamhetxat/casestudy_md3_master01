@@ -44,7 +44,7 @@ public class BookServlet extends HttpServlet {
                 showEdit(request,response);
                 break;
             default:
-                request.getRequestDispatcher("navlibrarian.jsp").include(request, response);
+                request.getRequestDispatcher("viewBook.jsp").include(request, response);
 
         }
     }
@@ -58,6 +58,9 @@ public class BookServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "homeKH":
+                response.sendRedirect("homeKH.jsp");
+                break;
             case "AddBook":
                 PrintWriter out = response.getWriter();
                 String callno = request.getParameter("callno");
@@ -85,16 +88,13 @@ public class BookServlet extends HttpServlet {
             case "ReturnBook":
                 PrintWriter outp=response.getWriter();
                 String callnoRB=request.getParameter("callno");
-                String sstudentid=request.getParameter("studentid");
-                int studentid=Integer.parseInt(sstudentid);
-
+                int studentid= Integer.parseInt(request.getParameter("studentid"));
                 int x=BookDao.returnBook(callnoRB,studentid);
-                if(x>0){
-                    outp.println("<h3>Book returned successfully</h3>");
-                }else{
+                if(x>=1 ){
+                    request.getRequestDispatcher("navlibrarian.jsp").include(request, response);
+                }else {
                     outp.println("<h3>Sorry, unable to return book.</h3><p>We may have sortage of books. Kindly visit later.</p>");
                 }
-                request.getRequestDispatcher("navlibrarian.jsp").include(request, response);
                 break;
             case "find":
                 findBook(request,response);

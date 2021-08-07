@@ -34,6 +34,11 @@
             </ul>
 
         </div><!-- /.navbar-collapse -->
+    </div>
+    <div class="search-container">
+        <form action="/issuebook?action=findIBook" method="post">
+            <input type="text" placeholder="Search.." name="findName"/>
+        </form>
     </div><!-- /.container-fluid -->
 </nav>
 <div class="col-sm-12">

@@ -25,6 +25,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
                 <li><a href="index.jsp">Home</a></li>
+                <li><a href="/book?action=homeKH">Home KH</a></li>
                 <li><a href="/book?action=AddBookForm">Add Book</a></li>
                 <li><a href="/book?action=ViewBook">View Book</a></li>
                 <li><a href="/issuebook?action=IssueBookForm">Issue Book</a></li>

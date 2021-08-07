@@ -27,6 +27,14 @@ public Book(String callno, String name, String author,String image, String publi
 		this.issued = issued;
 	}
 
+	public Book(String callno, String name, String author,String image,int quantity) {
+		this.callno = callno;
+		this.name = name;
+		this.author = author;
+		this.image = image;
+		this.quantity = quantity;
+	}
+
 	public String getCallno() {
 	return callno;
 }

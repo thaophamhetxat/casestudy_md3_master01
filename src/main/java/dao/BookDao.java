@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BookDao {
@@ -156,6 +157,8 @@ public class BookDao {
                 ps2.setInt(1, getIssued(callno) - 1);
                 ps2.setString(2, callno);
                 status = ps2.executeUpdate();
+            }else {
+                System.out.println("sách đã đủ");
             }
             con.close();
 
@@ -225,6 +228,25 @@ public class BookDao {
         ps.setInt(5, book.getQuantity());
         ps.setString(6, book.getCallno());
         ps.execute();
+    }
+
+    public static ArrayList<IssueBook> findByNameIb(String findName) throws SQLException {
+        Connection con = DB.getCon();
+        ArrayList<IssueBook> findListIb = new ArrayList<>();
+        String findByName = "select * from e_issuebook where studentname like '%" + findName + "%'";
+        PreparedStatement preparedStatement = con.prepareStatement(findByName);
+        ResultSet rs = preparedStatement.executeQuery();
+
+        while (rs.next()) {
+            String callno = (rs.getString("callno"));
+            String studentid = rs.getString("studentid");
+            String studentname = rs.getString("studentname");
+            long studentmobile = rs.getLong("studentmobile");
+            Date issueddate = rs.getDate("issueddate");
+            String returnstatus = rs.getString("returnstatus");
+            findListIb.add(new IssueBook(callno,studentid,studentname,studentmobile, (java.sql.Date) issueddate,returnstatus));
+        }
+        return findListIb;
     }
 
 }
